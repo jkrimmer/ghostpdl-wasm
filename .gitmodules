@@ -1,0 +1,3 @@
+[submodule "build/ghostpdl"]
+	path = build/ghostpdl
+	url = https://github.com/ArtifexSoftware/ghostpdl/

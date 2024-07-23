@@ -1,0 +1,39 @@
+diff --git a/pdf/pdf_fapi.c b/pdf/pdf_fapi.c
+index 9ebff7fbc..3f01f49e9 100644
+--- a/pdf/pdf_fapi.c
++++ b/pdf/pdf_fapi.c
+@@ -1431,11 +1431,11 @@ pdfi_fapi_build_char(gs_show_enum * penum, gs_gstate * pgs, gs_font * pfont,
+     return (code);
+ }
+ 
+-static void
++static int
+ pdfi_get_server_param(gs_fapi_server * I, const char *subtype,
+                     char **server_param, int *server_param_size)
+ {
+-    return;
++    return 0;
+ }
+ 
+ #if 0
+diff --git a/psi/zfapi.c b/psi/zfapi.c
+index bbe5392d2..410fc2fbf 100644
+--- a/psi/zfapi.c
++++ b/psi/zfapi.c
+@@ -2344,7 +2344,7 @@ zFAPIavailable(i_ctx_t *i_ctx_p)
+     return (0);
+ }
+ 
+-static void
++static int
+ ps_get_server_param(gs_fapi_server *I, const byte *subtype,
+                     byte **server_param, int *server_param_size)
+ {
+@@ -2362,6 +2362,7 @@ ps_get_server_param(gs_fapi_server *I, const byte *subtype,
+             }
+         }
+     }
++    return 0;
+ }
+ 
+ static int
