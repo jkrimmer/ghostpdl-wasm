@@ -1,7 +1,8 @@
-name: "build ghostpdl binaries for wasm"
+name: "Release: build all ghostpdl binaries for wasm"
 on: 
-  release:
-    types: [published]
+  push:
+    tags:
+    - 'v*'
   workflow_dispatch:
 
 jobs:
@@ -25,8 +26,24 @@ jobs:
       - name: Build ghostpdl for wasm
         run: ./build/build.sh
 
+      - name: Zip generated binaries
+        run: |
+          mkdir target
+          cd build/ghostpdl/bin
+          ...
+          mv *.tar.gz ../../../target          
+
       - name: Archive build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: all-binaries
           path: build/ghostpdl/bin
+      
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: target/*
+          tag: ${{ github.ref }}
+          overwrite: true
+          file_glob: true
