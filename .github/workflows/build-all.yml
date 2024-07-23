@@ -47,6 +47,6 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: target/*
           tag: ${{ github.ref }}
-          release_name: ${{ github.ref_name }}-full
+          release_name: ${{ github.ref_name }}
           overwrite: true
           file_glob: true
