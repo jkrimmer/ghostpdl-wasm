@@ -1,23 +1,24 @@
 name: "build ghostpdl binaries for wasm"
-on: [release]
+on: 
+  release:
+    types: [published]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Emscripten
-      - uses: mymindstorm/setup-emsdk@v14
+        uses: mymindstorm/setup-emsdk@v14
         with:
-          # Make sure to set a version number!
           version: 3.1.63
-          # This is the name of the cache folder.
-          # The cache folder will be placed in the build directory,
-          #  so make sure it doesn't conflict with anything!
-          actions-cache-folder: 'emsdk-cache'
+          actions-cache-folder: emsdk-cache
+
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Build ghostpdl for wasm
-        run: . build/build.sh
+        run: ./build/build.sh
+
       - name: Archive build artifacts
         uses: actions/upload-artifact@v4
         with:
