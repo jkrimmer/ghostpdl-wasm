@@ -9,6 +9,8 @@ export CFLAGS="$EMCC_FLAGS_RELEASE"
 #export EMCC_DEBUG=1
 
 cd "$BUILDDIR/ghostpdl"
+# Apply ghostpdl patch to avoid function pointer issues
+git apply "$BUILDDIR/fix-Wcast-function-type-mismatch.patch"
 
 emconfigure ./autogen.sh \
   --host="wasm32" \

@@ -13,8 +13,6 @@ git submodule update --init --recursive
 # Checkout desired version of the ghostpdl submodule
 cd "$BUILDDIR/ghostpdl"
 git checkout gs$GSVER
-# Apply ghostpdl patch to avoid function pointer issues
-git apply "$BUILDDIR/fix-Wcast-function-type-mismatch.patch"
 cd "$BUILDDIR"
 
 # Check if emscripten has been cloned before
