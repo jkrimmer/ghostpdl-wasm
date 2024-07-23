@@ -35,12 +35,6 @@ jobs:
           for base in $(ls | sed -e 's/\.[^.]*$//' | sort -u); do tar -cvf "$base.tar" $(ls "$base"*); gzip "$base.tar"; done
           mv *.tar.gz ../../../target          
 
-      - name: Archive build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: all-binaries
-          path: build/ghostpdl/bin
-      
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
         with:
