@@ -39,8 +39,8 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: target/*
+          file: target/gs.tar.gz
+          asset_name: gs-inkcov-only.tar.gz
           tag: ${{ github.ref }}
-          release_name: ${{ github.ref_name }}-inkcov-only
+          release_name: ${{ github.ref_name }}
           overwrite: true
-          file_glob: true
