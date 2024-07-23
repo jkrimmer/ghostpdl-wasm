@@ -30,7 +30,7 @@ jobs:
         run: |
           mkdir target
           cd build/ghostpdl/bin
-          ...
+          for base in $(ls | sed -e 's/\.[^.]*$//' | sort -u); do tar -cvf "$base.tar" $(ls "$base"*); gzip "$base.tar"; done
           mv *.tar.gz ../../../target          
 
       - name: Archive build artifacts
