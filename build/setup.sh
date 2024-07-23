@@ -20,16 +20,16 @@ cd "$BUILDDIR"
 # Check if emscripten has been cloned before
 if [ -d "$BUILDDIR/emsdk" ]; then
     echo "Directory emsdk exists. Will pull updates if necessary."
-    cd "$BUILDDIR/emsdk"
-    # Get currently checked-out branch/tag
-    curEMSDKVER="$(git symbolic-ref -q --short HEAD || git describe --tags --exact-match 2>&1)"
 else
     echo "Directory emsdk does not exist. Clone."
     # Get the emsdk repo
     git clone https://github.com/emscripten-core/emsdk.git
-    # Empty dummy branch/tag
-    curEMSDKVER=
 fi
+
+cd "$BUILDDIR/emsdk"
+
+# Get currently checked-out branch/tag
+curEMSDKVER="$(git symbolic-ref -q --short HEAD || git describe --tags --exact-match 2>&1)"
 
 if [ "$curEMSDKVER" != "$EMSDKVER" ]; then
     git pull
