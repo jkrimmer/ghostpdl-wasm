@@ -29,15 +29,15 @@ export GS_LDFLAGS="\
 -s WASM_BIGINT=1 \
 -s FORCE_FILESYSTEM \
 -s EXPORT_ES6 \
+-s ENVIRONMENT='worker' \
 -s MODULARIZE=1 \
 -s EXPORT_NAME=gs \
 -s INVOKE_RUN=0 \
 -s EXPORTED_RUNTIME_METHODS='["callMain","FS"]' \
+-s EMULATE_FUNCTION_POINTER_CASTS \
+-s BINARYEN_EXTRA_PASSES="--pass-arg=max-func-params@70" \
 --closure 1 \
 "
-# the following two flags are necessary if we do not patch ghostscript such that it avoids function pointer mismatches
-#-s EMULATE_FUNCTION_POINTER_CASTS \
-#-s BINARYEN_EXTRA_PASSES="--pass-arg=max-func-params@70" \
 
 emmake make LDFLAGS="$LDFLAGS $GS_LDFLAGS" -j
 
