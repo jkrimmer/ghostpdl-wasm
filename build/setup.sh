@@ -1,6 +1,6 @@
 #!/bin/bash
-GSVER=10.03.0
-EMSDKVER=3.1.63
+GSVER=10.05.1
+EMSDKVER=4.0.13
 
 # Change to current directory of setup script
 INITDIR="$PWD"
