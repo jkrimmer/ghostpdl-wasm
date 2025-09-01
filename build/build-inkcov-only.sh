@@ -27,7 +27,7 @@ emconfigure ./autogen.sh \
   --with-pcl="no" \
 #  --disable-compile-inits \
 
-export GS_LDFLAGS="\
+GS_LDFLAGS="\
 -s EXIT_RUNTIME=0 \
 -s ALLOW_MEMORY_GROWTH=1 \
 -s STACK_SIZE=256kb \
@@ -36,6 +36,7 @@ export GS_LDFLAGS="\
 -s ERROR_ON_UNDEFINED_SYMBOLS=1 \
 -s WASM_BIGINT=1 \
 -s FORCE_FILESYSTEM \
+-s ENVIRONMENT="web,webview,worker,node" \
 -s EXPORT_ES6 \
 -s MODULARIZE=1 \
 -s EXPORT_NAME=gs \
