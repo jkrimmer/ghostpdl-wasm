@@ -19,7 +19,7 @@ jobs:
       - name: Set up Emscripten
         uses: mymindstorm/setup-emsdk@v14
         with:
-          version: 3.1.63
+          version: 4.0.13
           actions-cache-folder: emsdk-cache
       
       - name: Verify
