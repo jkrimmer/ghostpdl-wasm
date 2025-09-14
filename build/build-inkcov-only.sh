@@ -9,9 +9,8 @@ export CFLAGS="$EMCC_FLAGS_RELEASE"
 #export EMCC_DEBUG=1
 
 cd "$BUILDDIR/ghostpdl"
-# Apply ghostpdl patch to avoid function pointer issues
-git apply "$BUILDDIR/fix-Wcast-function-type-mismatch.patch"
 
+# with gs10.06.0, we need the pdfwrite device, otherwise the ARC4 crypt filter implementation (base/gsarc4.c) is not pulled in properly (according to ChatGPT)s
 emconfigure ./autogen.sh \
   --host="wasm32" \
   --disable-cups \
@@ -23,7 +22,7 @@ emconfigure ./autogen.sh \
   --without-ufst \
   --without-libpaper \
   --with-xps="no" \
-  --with-drivers=inkcov \
+  --with-drivers=inkcov,pdfwrite \
   --with-pcl="no" \
 #  --disable-compile-inits \
 
