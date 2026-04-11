@@ -1,5 +1,5 @@
 #!/bin/bash
-GSVER=10.06.0
+GSVER=10.07.0
 EMSDKVER=4.0.14
 
 # Change to current directory of setup script
