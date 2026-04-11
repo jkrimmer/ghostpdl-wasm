@@ -33,11 +33,12 @@ if [ "$curEMSDKVER" != "$EMSDKVER" ]; then
     git pull
     # Checkout the desired version
     git checkout $EMSDKVER
-    # Download and install the SDK tools.
-    ./emsdk install $EMSDKVER
-    # Activate emsdk
-    ./emsdk activate $EMSDKVER
 fi
+
+# Download and install the SDK tools.
+./emsdk install $EMSDKVER
+# Activate emsdk
+./emsdk activate $EMSDKVER
 
 # Go back to the starting point
 cd "$INITDIR"
