@@ -29,8 +29,21 @@ jobs:
       - name: Checkout ghostpdl submodule at version from setup.sh
         run: |
           GSVER=$(grep '^GSVER=' build/setup.sh | cut -d= -f2)
-          git -C build/ghostpdl fetch origin "gs${GSVER}"
-          git -C build/ghostpdl checkout "gs${GSVER}"
+          TAG=""
+          for candidate in "gs${GSVER}" "ghostpdl-${GSVER}"; do
+            if git -C build/ghostpdl ls-remote --exit-code --tags origin "refs/tags/${candidate}" >/dev/null; then
+              TAG="${candidate}"
+              break
+            fi
+          done
+
+          if [ -z "$TAG" ]; then
+            echo "No matching ghostpdl tag found for GSVER=${GSVER}" >&2
+            exit 1
+          fi
+
+          git -C build/ghostpdl fetch --depth=1 origin "refs/tags/${TAG}:refs/tags/${TAG}"
+          git -C build/ghostpdl checkout "tags/${TAG}"
 
       - name: Build ghostpdl for wasm
         run: ./build/build-inkcov-only.sh
