@@ -26,6 +26,11 @@ jobs:
       - name: Verify
         run: emcc -v
 
+      - name: Checkout ghostpdl submodule at version from setup.sh
+        run: |
+          GSVER=$(grep '^GSVER=' build/setup.sh | cut -d= -f2)
+          git -C build/ghostpdl checkout "gs${GSVER}"
+
       - name: Build ghostpdl for wasm
         run: ./build/build.sh
 
